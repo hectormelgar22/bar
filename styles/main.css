@@ -1,0 +1,253 @@
+/* ==========================================================================
+   LA MAESTRANZA - ESTILOS PERSONALIZADOS Y COMPONENTES
+   Diseño artesanal, limpio, humano y sin artificios
+   ========================================================================== */
+
+/* Reseteo general */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0e1013;
+}
+::-webkit-scrollbar-thumb {
+  background: #242a34;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
+
+/* --------------------------------------------------------------------------
+   OPORTUNIDAD #2: FEEDBACK TÁCTIL GLOBAL (:active) EN BOTONES Y ENLACES CTA
+   -------------------------------------------------------------------------- */
+button,
+.menu-tab-btn,
+.zone-btn,
+a[href="#reservas"],
+a[href="#carta"],
+#btnSubmitBooking,
+#btnModalOrder,
+#mobileMenuBtn,
+#btnModalClose {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 140ms cubic-bezier(0.2, 0, 0, 1),
+              background-color 150ms ease,
+              border-color 150ms ease,
+              color 150ms ease,
+              box-shadow 150ms ease;
+}
+
+button:active,
+.menu-tab-btn:active,
+.zone-btn:active,
+a[href="#reservas"]:active,
+a[href="#carta"]:active,
+#btnSubmitBooking:active,
+#btnModalOrder:active,
+#mobileMenuBtn:active,
+#btnModalClose:active {
+  transform: scale(0.96) translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   OPORTUNIDAD #1 & #5: PESTAÑAS DE LA CARTA Y BOTONES DE ZONA
+   -------------------------------------------------------------------------- */
+.menu-tab-btn {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.menu-tab-btn:hover {
+  color: #ffffff;
+}
+
+.menu-tab-btn.active {
+  background-color: #d97706 !important;
+  color: #0e1013 !important;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.35);
+}
+
+/* Botones de Zona en Reservas (Oportunidad #5) */
+.zone-btn {
+  transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out, transform 120ms ease-out;
+}
+
+.zone-btn:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.zone-btn.active {
+  border-color: #d97706 !important;
+  background-color: rgba(217, 119, 6, 0.18) !important;
+  color: #ffffff !important;
+}
+
+/* Tarjetas de la Carta y Filtrado Suave (Oportunidad #1) */
+.dish-card {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms ease,
+              box-shadow 200ms ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.dish-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 119, 6, 0.5);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(217, 119, 6, 0.15);
+}
+
+.dish-card:active {
+  transform: scale(0.98) translateY(-1px);
+}
+
+.dish-card.dish-hidden {
+  display: none !important;
+}
+
+.dish-card.dish-fade-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  pointer-events: none;
+}
+
+.dish-card.dish-fade-in {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   OPORTUNIDAD #3: MENÚ MÓVIL DESPLEGABLE CON TRANSICIÓN SUAVE
+   -------------------------------------------------------------------------- */
+#mobileDrawer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+  border-bottom-width: 0;
+  transition: max-height 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              padding 220ms ease;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#mobileDrawer.open {
+  max-height: 420px;
+  opacity: 1;
+  transform: translateY(0);
+  border-bottom-width: 1px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   MODAL DEL PLATO CON APERTURA/CIERRE FLUIDO
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease-out;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-card {
+  transform: scale(0.93) translateY(16px);
+  opacity: 0;
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease-out;
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   OPORTUNIDAD #4: TOAST CON SALIDA SIMÉTRICA Y SUAVE
+   -------------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: calc(100vw - 48px);
+}
+
+.toast {
+  pointer-events: auto;
+  background: #1b1f26;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  color: #f5f2eb;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(16px) scale(0.95);
+  opacity: 0;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease-out;
+}
+
+.toast.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.toast.hide {
+  transform: translateY(16px) scale(0.95);
+  opacity: 0;
+  transition: transform 180ms ease-in, opacity 180ms ease-in;
+}
+
+/* --------------------------------------------------------------------------
+   PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

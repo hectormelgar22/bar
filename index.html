@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Maestranza | Bar, Tapas y Cervecería</title>
+  <meta name="description" content="Bar de barrio y gastrobar en el centro. Raciones de siempre, carnes a la brasa, 12 grifos de cerveza y retransmisión de todos los partidos de fútbol.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23b45309%22/><text x=%2250%22 y=%2265%22 font-size=%2245%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-family=%22serif%22 font-weight=%22bold%22>M</text></svg>">
+
+  <!-- Google Fonts: Fraunces (Serif con carácter cálido artesanal) & Plus Jakarta Sans (Lectura clara) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Fraunces"', 'Georgia', 'serif'],
+          },
+          colors: {
+            brand: {
+              darkest: '#0e1013',
+              dark: '#14171c',
+              surface: '#1b1f26',
+              elevated: '#242a34',
+              border: 'rgba(255, 255, 255, 0.08)',
+              accent: '#d97706',
+              accentLight: '#f59e0b',
+              accentMuted: '#92400e',
+              warmWhite: '#f5f2eb',
+              muted: '#9ca3af'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css?v=2.0">
+</head>
+<body class="bg-brand-darkest text-brand-warmWhite font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 1. BARRA SUPERIOR DE HORARIO Y UBICACIÓN -->
+  <!-- ========================================================================= -->
+  <aside class="bg-[#0a0c0f] border-b border-white/5 py-2 px-4 text-xs text-brand-muted">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 font-medium text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span id="liveStatusText">Abierto hoy hasta las 02:00</span>
+        </span>
+        <span class="text-white/20 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Cocina ininterrumpida y terraza abierta</span>
+      </div>
+      <div class="flex items-center gap-6 text-slate-300">
+        <a href="#contacto" class="hover:text-brand-accentLight transition-colors">Calle Mayor 42, Centro</a>
+        <a href="tel:+34912345678" class="hover:text-brand-accentLight transition-colors font-medium">912 345 678</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- 2. NAVEGACIÓN PRINCIPAL -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full bg-brand-darkest/90 backdrop-blur-md border-b border-white/10" id="siteHeader">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      
+      <!-- Logotipo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-brand-surface border border-white/15 flex items-center justify-center font-serif font-bold text-lg text-brand-accentLight group-hover:border-brand-accent transition-colors">
+          M
+        </div>
+        <div>
+          <span class="font-serif text-lg font-bold text-brand-warmWhite tracking-tight block leading-none group-hover:text-brand-accentLight transition-colors">La Maestranza</span>
+          <span class="text-[11px] text-brand-muted tracking-wider uppercase block mt-1">Bar & Gastrobar</span>
+        </div>
+      </a>
+
+      <!-- Menú Escritorio -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#carta" class="hover:text-white transition-colors">Carta</a>
+        <a href="#futbol" class="hover:text-white transition-colors">Fútbol en Directo</a>
+        <a href="#espacio" class="hover:text-white transition-colors">El Bar y Terraza</a>
+        <a href="#opiniones" class="hover:text-white transition-colors">Opiniones</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+      </div>
+
+      <!-- Botón de Reserva Rápida -->
+      <div class="flex items-center gap-3">
+        <a href="#reservas" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-semibold text-xs transition-all shadow-sm">
+          <span>Reservar mesa</span>
+        </a>
+
+        <!-- Botón Menú Móvil -->
+        <button type="button" class="md:hidden p-2 rounded-lg bg-brand-surface border border-white/10 text-slate-300" id="mobileMenuBtn" aria-label="Abrir menú">
+          <svg class="w-5 h-5 icon-menu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+          <svg class="w-5 h-5 icon-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú Móvil Desplegable -->
+    <div class="md:hidden bg-brand-dark border-b border-white/10 px-6 space-y-3" id="mobileDrawer">
+      <a href="#carta" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">La Carta</a>
+      <a href="#futbol" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Fútbol en Directo</a>
+      <a href="#espacio" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">El Bar y Terraza</a>
+      <a href="#opiniones" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Opiniones</a>
+      <a href="#contacto" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Ubicación y Horarios</a>
+      <div class="pt-2">
+        <a href="#reservas" class="block w-full py-2.5 text-center font-semibold text-xs rounded-lg bg-brand-accent text-slate-950">
+          Reservar mesa
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. HERO (HUMANIZADO Y ACOGEDOR) -->
+  <!-- ========================================================================= -->
+  <section class="py-16 md:py-24 px-4 sm:px-6 relative bg-gradient-to-b from-brand-darkest to-brand-dark" id="hero">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Texto Principal -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        
+        <span class="inline-block text-xs font-semibold uppercase tracking-widest text-brand-accentLight border border-brand-accent/30 bg-brand-surface px-3 py-1 rounded-md">
+          Bar tradicional & Cocina casera
+        </span>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-brand-warmWhite">
+          Cerveza fría, raciones de verdad y un sitio donde juntarse.
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed">
+          Abrimos por la mañana con los desayunos, seguimos al mediodía con las cañas de grifo y el picoteo, y por la noche ponemos los partidos de fútbol con la cocina abierta para cenar a gusto con amigos o en familia.
+        </p>
+
+        <!-- Botones de Acción -->
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <a href="#carta" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-bold text-sm transition-colors text-center shadow-md">
+            Ver la carta y raciones
+          </a>
+          <a href="#reservas" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand-surface hover:bg-brand-elevated border border-white/15 text-brand-warmWhite font-semibold text-sm transition-colors text-center">
+            Reservar mesa para comer o cenar
+          </a>
+        </div>
+
+        <!-- Detalles Rápidos del Bar -->
+        <div class="pt-6 grid grid-cols-3 gap-6 border-t border-white/10 max-w-md mx-auto lg:mx-0 text-center lg:text-left text-xs text-slate-300">
+          <div>
+            <strong class="font-serif text-2xl text-brand-accentLight block font-bold">12</strong>
+            <span>Grifos de cerveza de bodega y artesana</span>
+          </div>
+          <div>
+            <strong class="font-serif text-2xl text-brand-accentLight block font-bold">Terraza</strong>
+            <span>Acondicionada para verano e invierno</span>
+          </div>
+          <div>
+            <strong class="font-serif text-2xl text-brand-accentLight block font-bold">Fútbol</strong>
+            <span>Todos los partidos en directo en sala</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Imagen Real y Cálida del Bar -->
+      <div class="lg:col-span-5">
+        <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-brand-surface shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1000&q=80" alt="Ambiente en la barra de La Maestranza" class="w-full h-80 sm:h-96 object-cover">
+          <div class="p-5 bg-brand-surface border-t border-white/5 space-y-1">
+            <h3 class="font-serif font-bold text-lg text-white">Tapeo de barra y brasas</h3>
+            <p class="text-xs text-brand-muted">Servimos siempre tapa de cocina con cada consumición.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. FÚTBOL EN DIRECTO (SECCIÓN INFORMATIVA SIN BOTONES DE RESERVA) -->
+  <!-- ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 bg-brand-dark border-t border-white/5" id="futbol">
+    <div class="max-w-6xl mx-auto space-y-10">
+      
+      <!-- Encabezado Informativo -->
+      <div class="max-w-2xl space-y-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          Fútbol en el bar
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+          Ven a ver el fútbol con nosotros
+        </h2>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          Ponemos todos los partidos de Liga, Champions League y Copa del Rey. Tenemos pantallas grandes repartidas por la sala y la barra para que se vea bien desde cualquier sitio, con el audio puesto en los partidos importantes.
+        </p>
+      </div>
+
+      <!-- Cómo funciona ver el partido en el bar -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-brand-dark flex items-center justify-center font-bold text-brand-accentLight text-sm border border-white/10">
+            01
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white">Entrada libre y sin reserva</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Para ver el partido no hace falta reservar entrada ni menú cerrado. Llegas, buscas sitio en la barra o en las mesas de la sala y pides lo que te apetezca.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-brand-dark flex items-center justify-center font-bold text-brand-accentLight text-sm border border-white/10">
+            02
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white">Cocina abierta durante el juego</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            La cocina no cierra mientras dura el partido. Puedes pedir raciones de torreznos, patatas bravas, hamburguesas o montados en cualquier momento.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-brand-dark flex items-center justify-center font-bold text-brand-accentLight text-sm border border-white/10">
+            03
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white">Terraza tranquila si no quieres fútbol</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Si vienes en familia o a charlar con amigos y prefieres no escuchar el partido, la terraza exterior y el cenador están separados y sin pantallas.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Cartelera Informativa de la Semana -->
+      <div class="p-6 rounded-2xl bg-brand-darkest border border-white/10 space-y-4">
+        <h3 class="font-serif text-lg font-bold text-white">Próximas retransmisiones destacadas</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-lg bg-brand-surface border border-white/5 space-y-1.5">
+            <span class="text-emerald-400 font-semibold block">Domingo • 21:00h • LaLiga</span>
+            <strong class="text-white text-sm block">Real Madrid vs FC Barcelona</strong>
+            <span class="text-slate-400 block">Pantalla principal de sala y barra</span>
+          </div>
+
+          <div class="p-4 rounded-lg bg-brand-surface border border-white/5 space-y-1.5">
+            <span class="text-slate-400 font-semibold block">Martes • 21:00h • Champions League</span>
+            <strong class="text-white text-sm block">Atlético de Madrid vs Inter de Milán</strong>
+            <span class="text-slate-400 block">Pantallas de sala</span>
+          </div>
+
+          <div class="p-4 rounded-lg bg-brand-surface border border-white/5 space-y-1.5">
+            <span class="text-slate-400 font-semibold block">Miércoles • 21:00h • Champions League</span>
+            <strong class="text-white text-sm block">Manchester City vs Bayern Múnich</strong>
+            <span class="text-slate-400 block">Pantallas de barra y comedor</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-slate-400 pt-2">
+          * Si quieres ver algún otro partido de segunda división o competiciones internacionales que no esté en la lista, pídeselo al camarero al llegar.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. LA CARTA (RACIONES Y COMIDA REAL) -->
+  <!-- ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 bg-brand-darkest" id="carta">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-brand-accentLight">
+          Para picar y compartir
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+          Nuestra Carta
+        </h2>
+        <p class="text-sm text-slate-300">
+          Todo hecho en casa, con producto fresco y pensado para pedir varias cosas al centro y disfrutar entre todos.
+        </p>
+      </div>
+
+      <!-- Selector de Categorías -->
+      <div class="flex items-center justify-center overflow-x-auto pb-2 px-2" id="menuTabsContainer">
+        <div class="inline-flex items-center gap-1 p-1 rounded-xl bg-brand-surface border border-white/10">
+          <button class="menu-tab-btn active px-4 py-2 rounded-lg text-xs font-semibold transition-all" data-category="tapas">
+            Tapas y Raciones
+          </button>
+          <button class="menu-tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all" data-category="brasas">
+            Carnes a la Brasa
+          </button>
+          <button class="menu-tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all" data-category="burgers">
+            Hamburguesas y Bocatas
+          </button>
+          <button class="menu-tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all" data-category="cervezas">
+            Cervezas de Grifo
+          </button>
+          <button class="menu-tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all" data-category="postres">
+            Postres Caseros
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de Platos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="dishesContainer">
+
+        <!-- Torreznos -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="tapas" data-dish-id="torreznos">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Torreznos de Soria" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                10,50 €
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Torreznos de Soria</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Panceta adobada frita a fuego lento y con el golpe final crujiente. Servidos con sal marina en escamas.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Maridaje: Caña bien fría</span>
+                <span>Apto celíacos</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Patatas Bravas -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="tapas" data-dish-id="bravas">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80" alt="Patatas Bravas caseras" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                8,50 €
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Patatas Bravas Tradicionales</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Patata agria cortada a mano, frita en dos tiempos con salsa brava de pimentón y alioli suave.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Picante equilibrado</span>
+                <span>Ración generosa</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Croquetas -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="tapas" data-dish-id="croquetas">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" alt="Croquetas de jamón" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                11,00 € <span class="font-normal text-[10px] text-slate-400">(6 uds)</span>
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Croquetas de Jamón Ibérico</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Bechamel cremosa con jamón ibérico picado, rebozado fino y fritura limpia sin exceso de aceite.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Elaboradas a diario</span>
+                <span>Las favoritas de los niños</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chuletón a la brasa -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="brasas" data-dish-id="chuleton">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Chuletón a la brasa" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                54,00 € / Kg
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Chuletón de Vaca a la Brasa</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Carne madurada con su grasa infiltrada, pasada por parrilla de carbón con patatas fritas caseras y pimientos de Padrón.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Para compartir (2-3 personas)</span>
+                <span>Punto al gusto</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Costillas -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="brasas" data-dish-id="costillas">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Costillar ibérico" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                16,50 €
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Costillar Asado con Salsa Barbacoa</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Cocinado despacio hasta que la carne se desprende del hueso con glaseado casero y patatas gajo.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Carne tierna y jugosa</span>
+                <span>Salsa suave</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Hamburguesa de la Casa -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="burgers" data-dish-id="burger-maestranza">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Hamburguesa casera" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                13,50 €
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Hamburguesa La Maestranza</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                180g de carne de ternera picada en el día, queso cheddar, bacon crujiente, cebolla pochada y pan brioche con patatas.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Incluye patatas</span>
+                <span>Opción sin gluten</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cerveza de Bodega -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="cervezas" data-dish-id="cerveza-bodega">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1538488881522-4326c36ad6c9?auto=format&fit=crop&w=800&q=80" alt="Cerveza tirada de grifo" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                2,20 € caña • 3,80 € jarra
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Cerveza de Bodega de Tanque</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Tirada en copa helada con su buena crema de espuma. Fresca, natural y directa del tanque refrigerado.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Grifo principal</span>
+                <span>Tapa incluida</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarta de Queso -->
+        <article class="dish-card bg-brand-surface border border-white/10 rounded-xl p-5 hover:border-brand-accent/50 transition-all flex flex-col justify-between cursor-pointer" data-category="postres" data-dish-id="tarta-queso">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
+              <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80" alt="Tarta de queso casera" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+                6,00 €
+              </span>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-lg font-bold text-white">Tarta de Queso al Horno</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Horneada a diario con queso cremoso y base de galleta. Centro suave y punto tostado por fuera.
+              </p>
+              <div class="pt-2 text-[11px] text-brand-muted border-t border-white/5 flex justify-between">
+                <span>Hecha en el bar</span>
+                <span>Porción generosa</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. EL ESPACIO (BARRA, TERRAZA Y SALÓN) -->
+  <!-- ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 bg-brand-dark border-t border-white/5" id="espacio">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
+      <div class="max-w-2xl space-y-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-brand-accentLight">
+          Nuestras zonas
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+          Un espacio amplio para cada ocasión
+        </h2>
+        <p class="text-sm text-slate-300">
+          Tenemos distintos ambientes para que te sientas a gusto tanto si vienes de cañas de pie en la barra como si te sientas a comer el domingo con la familia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Zona 1: La Barra -->
+        <div class="rounded-xl overflow-hidden bg-brand-surface border border-white/10 flex flex-col justify-between">
+          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="La barra del bar" class="w-full h-48 object-cover">
+          <div class="p-6 space-y-2">
+            <h3 class="font-serif text-lg font-bold text-white">La Barra de Roble</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              El rincón clásico para pedir una caña rápida, tomar el aperitivo al mediodía o comentar las jugadas con los habituales del barrio.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zona 2: La Terraza -->
+        <div class="rounded-xl overflow-hidden bg-brand-surface border border-white/10 flex flex-col justify-between">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="La terraza exterior" class="w-full h-48 object-cover">
+          <div class="p-6 space-y-2">
+            <h3 class="font-serif text-lg font-bold text-white">La Terraza Exterior</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Terraza amplia en calle peatonal, con sombra en verano y estufas en invierno. Muy cómoda para familias con niños o carritos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zona 3: El Comedor -->
+        <div class="rounded-xl overflow-hidden bg-brand-surface border border-white/10 flex flex-col justify-between">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="El salón comedor" class="w-full h-48 object-cover">
+          <div class="p-6 space-y-2">
+            <h3 class="font-serif text-lg font-bold text-white">El Comedor Interior</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Mesas cómodas para comidas y cenas de grupo, cumpleaños o reuniones familiares con servicio atento y cocina de brasas.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. OPINIONES REALISTAS -->
+  <!-- ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 bg-brand-darkest" id="opiniones">
+    <div class="max-w-6xl mx-auto space-y-10">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-accentLight">
+            Clientes y vecinos
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+            Lo que dicen de nosotros
+          </h2>
+        </div>
+        <div class="text-xs text-slate-300 flex items-center gap-2">
+          <span class="text-brand-accent font-bold">4.8 sobre 5</span>
+          <span>en reseñas de Google y clientes habituales</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-4">
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
+            "Solemos ir los domingos a la terraza después del paseo a tomar el vermut y unas bravas. El trato es cercano y la comida sale rápida aunque haya gente."
+          </p>
+          <div class="pt-2 border-t border-white/5 text-xs">
+            <strong class="text-white block font-medium">Laura y Marcos</strong>
+            <span class="text-brand-muted text-[11px]">Vecinos del barrio</span>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-4">
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
+            "Para ver el fútbol con los compañeros de trabajo es el mejor sitio de la zona. Se ve bien desde las mesas, la cerveza está bien tirada y los torreznos son de los buenos."
+          </p>
+          <div class="pt-2 border-t border-white/5 text-xs">
+            <strong class="text-white block font-medium">Javier Morales</strong>
+            <span class="text-brand-muted text-[11px]">Cliente habitual</span>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-4">
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
+            "Celebramos una comida familiar de 10 personas el mes pasado en el comedor. El chuletón a la brasa y las croquetas estaban en su punto. Muy recomendable."
+          </p>
+          <div class="pt-2 border-t border-white/5 text-xs">
+            <strong class="text-white block font-medium">Elena S.</strong>
+            <span class="text-brand-muted text-[11px]">Comida familiar</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. RESERVAS Y CONTACTO (SENCILLO Y HUMANO) -->
+  <!-- ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 bg-brand-dark border-t border-white/5" id="reservas">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Formulario de Reserva -->
+        <div class="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-brand-surface border border-white/10 space-y-6">
+          <div class="space-y-1.5">
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+              Reservar mesa para comer o cenar
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Si quieres asegurar mesa para grupos o comidas familiares de fin de semana, déjanos tus datos y te guardamos el sitio.
+            </p>
+          </div>
+
+          <form id="bookingForm" class="space-y-4" onsubmit="return false;">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="space-y-1">
+                <label for="bookDate" class="text-xs font-semibold text-slate-300">Fecha</label>
+                <input type="date" id="bookDate" class="w-full bg-brand-dark border border-white/15 rounded-lg px-3 py-2.5 text-xs text-white focus:border-brand-accent focus:outline-none" required>
+              </div>
+              <div class="space-y-1">
+                <label for="bookTime" class="text-xs font-semibold text-slate-300">Hora</label>
+                <select id="bookTime" class="w-full bg-brand-dark border border-white/15 rounded-lg px-3 py-2.5 text-xs text-white focus:border-brand-accent focus:outline-none">
+                  <option value="13:30">13:30h (Comida)</option>
+                  <option value="14:30">14:30h (Comida)</option>
+                  <option value="15:30">15:30h (Tarde)</option>
+                  <option value="20:30">20:30h (Cena)</option>
+                  <option value="21:30" selected>21:30h (Cena)</option>
+                  <option value="22:30">22:30h (Cena)</option>
+                </select>
+              </div>
+              <div class="space-y-1">
+                <label for="bookGuests" class="text-xs font-semibold text-slate-300">Personas</label>
+                <select id="bookGuests" class="w-full bg-brand-dark border border-white/15 rounded-lg px-3 py-2.5 text-xs text-white focus:border-brand-accent focus:outline-none">
+                  <option value="2">2 personas</option>
+                  <option value="4" selected>4 personas</option>
+                  <option value="6">6 personas</option>
+                  <option value="8">8 personas</option>
+                  <option value="10">10 o más (Grupo)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-300">Zona preferida</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" class="zone-btn active py-2 px-3 rounded-lg bg-brand-dark border border-brand-accent/60 text-xs text-center font-medium" data-zone="comedor">
+                  Comedor Interior
+                </button>
+                <button type="button" class="zone-btn py-2 px-3 rounded-lg bg-brand-dark border border-white/10 text-xs text-center font-medium text-slate-300" data-zone="terraza">
+                  Terraza Exterior
+                </button>
+                <button type="button" class="zone-btn py-2 px-3 rounded-lg bg-brand-dark border border-white/10 text-xs text-center font-medium text-slate-300" data-zone="barra">
+                  Mesas de Barra
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="space-y-1">
+                <label for="bookName" class="text-xs font-semibold text-slate-300">Nombre de contacto</label>
+                <input type="text" id="bookName" placeholder="Tu nombre" class="w-full bg-brand-dark border border-white/15 rounded-lg px-3 py-2.5 text-xs text-white focus:border-brand-accent focus:outline-none" required>
+              </div>
+              <div class="space-y-1">
+                <label for="bookPhone" class="text-xs font-semibold text-slate-300">Teléfono</label>
+                <input type="tel" id="bookPhone" placeholder="600 000 000" class="w-full bg-brand-dark border border-white/15 rounded-lg px-3 py-2.5 text-xs text-white focus:border-brand-accent focus:outline-none" required>
+              </div>
+            </div>
+
+            <button type="submit" id="btnSubmitBooking" class="w-full py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-bold text-xs transition-colors shadow-sm">
+              Confirmar reserva
+            </button>
+            <p class="text-[11px] text-slate-400 text-center">
+              También puedes reservar directamente llamándonos por teléfono al 912 345 678.
+            </p>
+          </form>
+        </div>
+
+        <!-- Horarios y Ubicación -->
+        <div class="lg:col-span-5 space-y-6" id="contacto">
+          
+          <div class="p-6 rounded-2xl bg-brand-surface border border-white/10 space-y-4">
+            <h3 class="font-serif text-xl font-bold text-white">Horario del Bar</h3>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex justify-between py-1 border-b border-white/5">
+                <span class="text-white font-medium">Lunes a Jueves:</span>
+                <span>12:00h a 00:30h</span>
+              </li>
+              <li class="flex justify-between py-1 border-b border-white/5">
+                <span class="text-white font-medium">Viernes y Sábados:</span>
+                <span>12:00h a 02:30h</span>
+              </li>
+              <li class="flex justify-between py-1 border-b border-white/5">
+                <span class="text-white font-medium">Domingos y Festivos:</span>
+                <span>11:30h a 00:00h</span>
+              </li>
+            </ul>
+            <p class="text-[11px] text-brand-muted">
+              La cocina está abierta de forma ininterrumpida desde las 12:00h hasta media hora antes del cierre.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-brand-surface border border-white/10 space-y-4">
+            <h3 class="font-serif text-xl font-bold text-white">Dónde Estamos</h3>
+            <div class="space-y-1 text-xs text-slate-300">
+              <strong class="text-white block">Calle Mayor 42, Centro</strong>
+              <p class="text-brand-muted">Junto a la plaza, zona peatonal con parking público a 50 metros.</p>
+            </div>
+            <div class="flex items-center gap-3 pt-2">
+              <a href="tel:+34912345678" class="flex-1 py-2.5 rounded-lg bg-brand-dark border border-white/15 text-white font-medium text-xs text-center hover:bg-brand-elevated transition-colors">
+                Llamar por teléfono
+              </a>
+              <a href="https://wa.me/34912345678?text=Hola,%20quer%C3%ADa%20consultar%20por%20una%20mesa" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-medium text-xs text-center hover:bg-emerald-950/60 transition-colors">
+                Escribir por WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. PIE DE PÁGINA -->
+  <!-- ========================================================================= -->
+  <footer class="bg-[#0a0c0f] border-t border-white/10 py-10 px-4 sm:px-6 text-xs text-brand-muted">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="font-serif font-bold text-white text-sm">La Maestranza Gastrobar</span>
+        <p class="text-[11px] text-slate-400 mt-0.5">Bar de tapas, raciones y cervecería de barrio.</p>
+      </div>
+      <div class="flex items-center gap-6 text-[11px] text-slate-400">
+        <a href="#carta" class="hover:text-white transition-colors">Carta</a>
+        <a href="#futbol" class="hover:text-white transition-colors">Fútbol</a>
+        <a href="#reservas" class="hover:text-white transition-colors">Reservas</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto pt-6 mt-6 border-t border-white/5 text-[11px] text-slate-500 text-center sm:text-left">
+      © 2026 La Maestranza. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 10. MODAL DEL PLATO (SENCILLO Y DIRECTO) -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay hidden" id="dishModal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card bg-brand-surface border border-white/15 rounded-2xl p-6 max-w-md w-full relative z-10 shadow-2xl">
+      <button type="button" class="modal-close-btn absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-lg bg-brand-dark border border-white/10" id="btnModalClose" aria-label="Cerrar">
+        ✕
+      </button>
+
+      <div class="space-y-4">
+        <div class="aspect-video rounded-lg bg-black overflow-hidden relative">
+          <img src="" alt="Plato" class="w-full h-full object-cover" id="modalDishImg">
+          <span class="absolute bottom-2.5 right-2.5 bg-black/85 text-brand-accentLight font-bold px-3 py-1 rounded-md text-xs border border-white/10" id="modalDishPrice">
+            -- €
+          </span>
+        </div>
+
+        <div class="space-y-1.5">
+          <h3 class="font-serif text-xl font-bold text-white" id="modalDishTitle">
+            Título
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed" id="modalDishDesc">
+            Descripción
+          </p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-brand-dark border border-white/5 space-y-1.5 text-xs text-slate-300">
+          <div class="flex justify-between">
+            <span class="text-brand-muted">Maridaje sugerido:</span>
+            <span id="modalDishPairing" class="text-white font-medium">Caña fría</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-brand-muted">Información:</span>
+            <span id="modalDishAllergens" class="text-slate-300">Consultar en barra</span>
+          </div>
+        </div>
+
+        <div class="pt-1">
+          <button type="button" class="w-full py-2.5 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-bold text-xs transition-colors" id="btnModalOrder">
+            Cerrar ficha
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de Toast -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="scripts/main.js?v=2.0"></script>
+</body>
+</html>
