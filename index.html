@@ -7,7 +7,7 @@
   <meta name="description" content="Bar de barrio y gastrobar en el centro. Raciones de siempre, carnes a la brasa, 12 grifos de cerveza y retransmisión de todos los partidos de fútbol.">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23b45309%22/><text x=%2250%22 y=%2265%22 font-size=%2245%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-family=%22serif%22 font-weight=%22bold%22>M</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23071524%22 stroke=%22%23eedfc8%22 stroke-width=%224%22/><text x=%2250%22 y=%2265%22 font-size=%2245%22 text-anchor=%22middle%22 fill=%22%23eedfc8%22 font-family=%22serif%22 font-weight=%22bold%22>M</text></svg>">
 
   <!-- Google Fonts: Fraunces (Serif con carácter cálido artesanal) & Plus Jakarta Sans (Lectura clara) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,16 +27,16 @@
           },
           colors: {
             brand: {
-              darkest: '#0e1013',
-              dark: '#14171c',
-              surface: '#1b1f26',
-              elevated: '#242a34',
-              border: 'rgba(255, 255, 255, 0.08)',
-              accent: '#d97706',
-              accentLight: '#f59e0b',
-              accentMuted: '#92400e',
-              warmWhite: '#f5f2eb',
-              muted: '#9ca3af'
+              darkest: '#071524',
+              dark: '#0b1f35',
+              surface: '#112b48',
+              elevated: '#17375c',
+              border: 'rgba(238, 223, 200, 0.12)',
+              accent: '#eedfc8',
+              accentLight: '#f8f1e5',
+              accentMuted: '#c4ad90',
+              warmWhite: '#f5f0e8',
+              muted: '#93a7be'
             }
           }
         }
@@ -47,16 +47,16 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles/main.css?v=2.0">
 </head>
-<body class="bg-brand-darkest text-brand-warmWhite font-sans antialiased selection:bg-brand-accent selection:text-white">
+<body class="bg-brand-darkest text-brand-warmWhite font-sans antialiased selection:bg-brand-accent selection:text-brand-darkest">
 
   <!-- ========================================================================= -->
   <!-- 1. BARRA SUPERIOR DE HORARIO Y UBICACIÓN -->
   <!-- ========================================================================= -->
-  <aside class="bg-[#0a0c0f] border-b border-white/5 py-2 px-4 text-xs text-brand-muted">
+  <aside class="bg-[#050e18] border-b border-white/5 py-2 px-4 text-xs text-brand-muted">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
         <span class="inline-flex items-center gap-1.5 font-medium text-emerald-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span id="liveStatusText">Abierto hoy hasta las 02:00</span>
         </span>
         <span class="text-white/20 hidden sm:inline">•</span>
@@ -72,12 +72,12 @@
   <!-- ========================================================================= -->
   <!-- 2. NAVEGACIÓN PRINCIPAL -->
   <!-- ========================================================================= -->
-  <header class="sticky top-0 z-40 w-full bg-brand-darkest/90 backdrop-blur-md border-b border-white/10" id="siteHeader">
+  <header class="sticky top-0 z-40 w-full bg-brand-darkest/92 backdrop-blur-md border-b border-white/10" id="siteHeader">
     <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       
       <!-- Logotipo -->
       <a href="#hero" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-brand-surface border border-white/15 flex items-center justify-center font-serif font-bold text-lg text-brand-accentLight group-hover:border-brand-accent transition-colors">
+        <div class="w-9 h-9 rounded-lg bg-brand-surface border border-brand-accent/30 flex items-center justify-center font-serif font-bold text-lg text-brand-accent group-hover:border-brand-accentLight group-hover:text-brand-accentLight transition-colors">
           M
         </div>
         <div>
@@ -88,16 +88,16 @@
 
       <!-- Menú Escritorio -->
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#carta" class="hover:text-white transition-colors">Carta</a>
-        <a href="#futbol" class="hover:text-white transition-colors">Fútbol en Directo</a>
-        <a href="#espacio" class="hover:text-white transition-colors">El Bar y Terraza</a>
-        <a href="#opiniones" class="hover:text-white transition-colors">Opiniones</a>
-        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+        <a href="#carta" class="hover:text-brand-accentLight transition-colors">Carta</a>
+        <a href="#futbol" class="hover:text-brand-accentLight transition-colors">Fútbol en Directo</a>
+        <a href="#espacio" class="hover:text-brand-accentLight transition-colors">El Bar y Terraza</a>
+        <a href="#opiniones" class="hover:text-brand-accentLight transition-colors">Opiniones</a>
+        <a href="#contacto" class="hover:text-brand-accentLight transition-colors">Contacto</a>
       </div>
 
       <!-- Botón de Reserva Rápida -->
       <div class="flex items-center gap-3">
-        <a href="#reservas" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-semibold text-xs transition-all shadow-sm">
+        <a href="#reservas" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-semibold text-xs transition-all shadow-sm">
           <span>Reservar mesa</span>
         </a>
 
@@ -121,7 +121,7 @@
       <a href="#opiniones" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Opiniones</a>
       <a href="#contacto" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Ubicación y Horarios</a>
       <div class="pt-2">
-        <a href="#reservas" class="block w-full py-2.5 text-center font-semibold text-xs rounded-lg bg-brand-accent text-slate-950">
+        <a href="#reservas" class="block w-full py-2.5 text-center font-semibold text-xs rounded-lg bg-brand-accent text-brand-darkest">
           Reservar mesa
         </a>
       </div>
@@ -151,7 +151,7 @@
 
         <!-- Botones de Acción -->
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-          <a href="#carta" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-bold text-sm transition-colors text-center shadow-md">
+          <a href="#carta" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-bold text-sm transition-colors text-center shadow-md">
             Ver la carta y raciones
           </a>
           <a href="#reservas" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand-surface hover:bg-brand-elevated border border-white/15 text-brand-warmWhite font-semibold text-sm transition-colors text-center">
@@ -324,7 +324,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Torreznos de Soria" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 10,50 €
               </span>
             </div>
@@ -346,7 +346,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80" alt="Patatas Bravas caseras" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 8,50 €
               </span>
             </div>
@@ -368,7 +368,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" alt="Croquetas de jamón" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 11,00 € <span class="font-normal text-[10px] text-slate-400">(6 uds)</span>
               </span>
             </div>
@@ -390,7 +390,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Chuletón a la brasa" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 54,00 € / Kg
               </span>
             </div>
@@ -412,7 +412,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Costillar ibérico" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 16,50 €
               </span>
             </div>
@@ -434,7 +434,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Hamburguesa casera" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 13,50 €
               </span>
             </div>
@@ -456,7 +456,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1538488881522-4326c36ad6c9?auto=format&fit=crop&w=800&q=80" alt="Cerveza tirada de grifo" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 2,20 € caña • 3,80 € jarra
               </span>
             </div>
@@ -478,7 +478,7 @@
           <div class="space-y-4">
             <div class="aspect-[16/10] rounded-lg overflow-hidden bg-black relative">
               <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80" alt="Tarta de queso casera" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 right-2.5 bg-black/80 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-white/10">
+              <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-2.5 py-1 rounded-md text-xs border border-brand-accent/20">
                 6,00 €
               </span>
             </div>
@@ -691,7 +691,7 @@
               </div>
             </div>
 
-            <button type="submit" id="btnSubmitBooking" class="w-full py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-bold text-xs transition-colors shadow-sm">
+            <button type="submit" id="btnSubmitBooking" class="w-full py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-bold text-xs transition-colors shadow-sm">
               Confirmar reserva
             </button>
             <p class="text-[11px] text-slate-400 text-center">
@@ -750,17 +750,17 @@
   <!-- ========================================================================= -->
   <!-- 9. PIE DE PÁGINA -->
   <!-- ========================================================================= -->
-  <footer class="bg-[#0a0c0f] border-t border-white/10 py-10 px-4 sm:px-6 text-xs text-brand-muted">
+  <footer class="bg-[#050e18] border-t border-white/10 py-10 px-4 sm:px-6 text-xs text-brand-muted">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         <span class="font-serif font-bold text-white text-sm">La Maestranza Gastrobar</span>
         <p class="text-[11px] text-slate-400 mt-0.5">Bar de tapas, raciones y cervecería de barrio.</p>
       </div>
       <div class="flex items-center gap-6 text-[11px] text-slate-400">
-        <a href="#carta" class="hover:text-white transition-colors">Carta</a>
-        <a href="#futbol" class="hover:text-white transition-colors">Fútbol</a>
-        <a href="#reservas" class="hover:text-white transition-colors">Reservas</a>
-        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+        <a href="#carta" class="hover:text-brand-accentLight transition-colors">Carta</a>
+        <a href="#futbol" class="hover:text-brand-accentLight transition-colors">Fútbol</a>
+        <a href="#reservas" class="hover:text-brand-accentLight transition-colors">Reservas</a>
+        <a href="#contacto" class="hover:text-brand-accentLight transition-colors">Contacto</a>
       </div>
     </div>
     <div class="max-w-6xl mx-auto pt-6 mt-6 border-t border-white/5 text-[11px] text-slate-500 text-center sm:text-left">
@@ -781,7 +781,7 @@
       <div class="space-y-4">
         <div class="aspect-video rounded-lg bg-black overflow-hidden relative">
           <img src="" alt="Plato" class="w-full h-full object-cover" id="modalDishImg">
-          <span class="absolute bottom-2.5 right-2.5 bg-black/85 text-brand-accentLight font-bold px-3 py-1 rounded-md text-xs border border-white/10" id="modalDishPrice">
+          <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-3 py-1 rounded-md text-xs border border-brand-accent/20" id="modalDishPrice">
             -- €
           </span>
         </div>
@@ -807,7 +807,7 @@
         </div>
 
         <div class="pt-1">
-          <button type="button" class="w-full py-2.5 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-slate-950 font-bold text-xs transition-colors" id="btnModalOrder">
+          <button type="button" class="w-full py-2.5 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-bold text-xs transition-colors" id="btnModalOrder">
             Cerrar ficha
           </button>
         </div>
