@@ -29,11 +29,14 @@ a {
    -------------------------------------------------------------------------- */
 button,
 .menu-tab-btn,
+.event-tab-btn,
 .zone-btn,
 a[href="#reservas"],
 a[href="#carta"],
+a[href="#eventos"],
 #btnSubmitBooking,
 #btnModalOrder,
+#btnModalReserve,
 #mobileMenuBtn,
 #btnModalClose {
   -webkit-tap-highlight-color: transparent;
@@ -48,11 +51,14 @@ a[href="#carta"],
 
 button:active,
 .menu-tab-btn:active,
+.event-tab-btn:active,
 .zone-btn:active,
 a[href="#reservas"]:active,
 a[href="#carta"]:active,
+a[href="#eventos"]:active,
 #btnSubmitBooking:active,
 #btnModalOrder:active,
+#btnModalReserve:active,
 #mobileMenuBtn:active,
 #btnModalClose:active {
   transform: scale(0.96) translateY(1px);
@@ -61,18 +67,21 @@ a[href="#carta"]:active,
 /* --------------------------------------------------------------------------
    OPORTUNIDAD #1 & #5: PESTAÑAS DE LA CARTA Y BOTONES DE ZONA
    -------------------------------------------------------------------------- */
-.menu-tab-btn {
+.menu-tab-btn,
+.event-tab-btn {
   background: transparent;
   border: none;
   color: #94a7bd;
   white-space: nowrap;
 }
 
-.menu-tab-btn:hover {
+.menu-tab-btn:hover,
+.event-tab-btn:hover {
   color: #ffffff;
 }
 
-.menu-tab-btn.active {
+.menu-tab-btn.active,
+.event-tab-btn.active {
   background-color: #eedfc8 !important;
   color: #090b0e !important;
   box-shadow: 0 2px 10px rgba(238, 223, 200, 0.25);
@@ -128,6 +137,62 @@ a[href="#carta"]:active,
 .dish-card.dish-fade-in {
   opacity: 1;
   transform: scale(1) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   TARJETAS DE EVENTOS, FILTRADO Y ANIMACIÓN
+   -------------------------------------------------------------------------- */
+.event-card {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms ease,
+              box-shadow 260ms ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(238, 223, 200, 0.45);
+  box-shadow: 0 18px 38px -8px rgba(0, 0, 0, 0.88), 0 0 24px -4px rgba(238, 223, 200, 0.16);
+}
+
+.event-card:active {
+  transform: scale(0.98) translateY(-2px);
+}
+
+.event-card.event-hidden {
+  display: none !important;
+}
+
+.event-card.event-fade-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  pointer-events: none;
+}
+
+.event-card.event-fade-in {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Indicador Pulsante Live */
+@keyframes livePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.7;
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
+  }
+}
+
+.live-dot {
+  animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* --------------------------------------------------------------------------

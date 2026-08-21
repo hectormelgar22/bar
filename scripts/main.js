@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initLiveHoursStatus();
   initMobileMenu();
   initMenuTabs();
-  initDishModal();
+  initEventTabs();
+  initDetailModal();
   initBookingSimulator();
 });
 
@@ -51,7 +52,7 @@ function initLiveHoursStatus() {
 }
 
 /* --------------------------------------------------------------------------
-   2. MENÚ MÓVIL (OPORTUNIDAD #3: TRANSICIÓN SUAVE)
+   2. MENÚ MÓVIL (TRANSICIÓN SUAVE)
    -------------------------------------------------------------------------- */
 function initMobileMenu() {
   const btn = document.getElementById('mobileMenuBtn');
@@ -84,7 +85,7 @@ function initMobileMenu() {
 }
 
 /* --------------------------------------------------------------------------
-   3. PESTAÑAS DE LA CARTA (OPORTUNIDAD #1: FILTRADO SUAVE)
+   3. PESTAÑAS DE LA CARTA (FILTRADO SUAVE)
    -------------------------------------------------------------------------- */
 function initMenuTabs() {
   const tabs = document.querySelectorAll('.menu-tab-btn');
@@ -107,7 +108,6 @@ function initMenuTabs() {
       return;
     }
 
-    // Paso 1: Salida suave de las tarjetas actualmente visibles que no encajan
     dishes.forEach((dish) => {
       if (!dish.classList.contains('dish-hidden')) {
         dish.classList.remove('dish-fade-in');
@@ -115,14 +115,12 @@ function initMenuTabs() {
       }
     });
 
-    // Paso 2: Conmutar visibilidad y desplegar las nuevas con animación fluida
     setTimeout(() => {
       let delay = 0;
       dishes.forEach((dish) => {
         const match = category === 'all' || dish.dataset.category === category;
         if (match) {
           dish.classList.remove('dish-hidden');
-          // Forzar reflujo para asegurar la animación
           void dish.offsetWidth;
           setTimeout(() => {
             dish.classList.remove('dish-fade-out');
@@ -136,7 +134,6 @@ function initMenuTabs() {
     }, 140);
   }
 
-  // Filtrado inicial para la categoría activa
   const activeTab = document.querySelector('.menu-tab-btn.active');
   const initialCategory = activeTab?.dataset.category || 'tapas';
   filterCategory(initialCategory, true);
@@ -155,99 +152,214 @@ function initMenuTabs() {
 }
 
 /* --------------------------------------------------------------------------
-   4. MODAL DETALLE DE PLATO
+   4. PESTAÑAS DE EVENTOS & AGENDA (FILTRADO SUAVE)
+   -------------------------------------------------------------------------- */
+function initEventTabs() {
+  const tabs = document.querySelectorAll('.event-tab-btn');
+  const events = document.querySelectorAll('.event-card');
+
+  if (tabs.length === 0 || events.length === 0) return;
+
+  function filterEventCategory(category) {
+    events.forEach((card) => {
+      if (!card.classList.contains('event-hidden')) {
+        card.classList.remove('event-fade-in');
+        card.classList.add('event-fade-out');
+      }
+    });
+
+    setTimeout(() => {
+      let delay = 0;
+      events.forEach((card) => {
+        const match = category === 'all' || card.dataset.eventCategory === category;
+        if (match) {
+          card.classList.remove('event-hidden');
+          void card.offsetWidth;
+          setTimeout(() => {
+            card.classList.remove('event-fade-out');
+            card.classList.add('event-fade-in');
+          }, delay);
+          delay += 40;
+        } else {
+          card.classList.add('event-hidden');
+        }
+      });
+    }, 140);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (tab.classList.contains('active')) return;
+
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const category = tab.dataset.eventCategory;
+      filterEventCategory(category);
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   5. DATOS DE PLATOS Y EVENTOS
    -------------------------------------------------------------------------- */
 const DISH_DATA = {
   'torreznos': {
     title: 'Torreznos de Soria',
     price: '10,50 €',
     desc: 'Panceta adobada y curada frita a fuego lento con el golpe final a temperatura fuerte para inflar la corteza. Servidos con sal marina en escamas.',
-    pairing: 'Caña bien fría o vino tinto',
-    allergens: 'Apto para celíacos (sin gluten)',
+    label1: 'Maridaje sugerido:',
+    val1: 'Caña bien fría o vino tinto',
+    label2: 'Alérgenos / Info:',
+    val2: 'Apto para celíacos (sin gluten)',
     img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'
   },
   'bravas': {
     title: 'Patatas Bravas Tradicionales',
     price: '8,50 €',
     desc: 'Patata agria cortada a mano en dados irregulares, confitadas y doradas en el momento. Acompañadas de nuestra salsa brava casera y alioli suave.',
-    pairing: 'Cerveza IPA o vermut',
-    allergens: 'Contiene huevo (en el alioli)',
+    label1: 'Maridaje sugerido:',
+    val1: 'Cerveza IPA o vermut',
+    label2: 'Alérgenos / Info:',
+    val2: 'Contiene huevo (en el alioli)',
     img: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80'
   },
   'croquetas': {
     title: 'Croquetas de Jamón Ibérico',
     price: '11,00 € (6 uds)',
     desc: 'Bechamel elaborada a diario con jamón ibérico picado fino y caldo de jamón. Rebozado fino y crujiente.',
-    pairing: 'Vino blanco o caña de bodega',
-    allergens: 'Contiene lácteos, gluten y huevo',
+    label1: 'Maridaje sugerido:',
+    val1: 'Vino blanco o caña de bodega',
+    label2: 'Alérgenos / Info:',
+    val2: 'Contiene lácteos, gluten y huevo',
     img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80'
   },
   'chuleton': {
     title: 'Chuletón de Vaca a la Brasa',
     price: '54,00 € / Kg',
     desc: 'Lomo alto de vaca madurada pasado por nuestra parrilla de carbón. Se sirve trinchado con patatas fritas caseras y pimientos verdes fritos.',
-    pairing: 'Vino tinto Ribera o Rioja',
-    allergens: 'Sin alérgenos comunes',
+    label1: 'Maridaje sugerido:',
+    val1: 'Vino tinto Ribera o Rioja',
+    label2: 'Alérgenos / Info:',
+    val2: 'Sin alérgenos comunes (carne a la brasa)',
     img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80'
   },
   'costillas': {
     title: 'Costillar Asado con Salsa Barbacoa',
     price: '16,50 €',
     desc: 'Costilla de cerdo cocinada despacio al horno y terminada a la brasa con salsa barbacoa casera y patatas rústicas.',
-    pairing: 'Cerveza tostada o negra',
-    allergens: 'Contiene mostaza y trazas de apio',
+    label1: 'Maridaje sugerido:',
+    val1: 'Cerveza tostada o negra',
+    label2: 'Alérgenos / Info:',
+    val2: 'Contiene mostaza y trazas de apio',
     img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'
   },
   'burger-maestranza': {
     title: 'Hamburguesa La Maestranza',
     price: '13,50 €',
     desc: '180g de carne de ternera picada en el día, queso cheddar curado, bacon crujiente, cebolla pochada y pan brioche de mantequilla. Servida con patatas fritas.',
-    pairing: 'Cerveza rubia o refresco',
-    allergens: 'Contiene gluten, lácteos y huevo',
+    label1: 'Maridaje sugerido:',
+    val1: 'Cerveza rubia o refresco',
+    label2: 'Alérgenos / Info:',
+    val2: 'Contiene gluten, lácteos y huevo',
     img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'
   },
   'cerveza-bodega': {
     title: 'Cerveza de Bodega de Tanque',
     price: '2,20 € caña • 3,80 € jarra',
     desc: 'Cerveza servida directa de tanque refrigerado sin pasteurizar. Copa fría y crema densa de espuma.',
-    pairing: 'Ideal para acompañar cualquier ración',
-    allergens: 'Contiene cebada (gluten)',
+    label1: 'Maridaje sugerido:',
+    val1: 'Ideal para acompañar cualquier ración',
+    label2: 'Alérgenos / Info:',
+    val2: 'Contiene cebada (gluten)',
     img: 'https://images.unsplash.com/photo-1538488881522-4326c36ad6c9?auto=format&fit=crop&w=800&q=80'
   },
   'tarta-queso': {
     title: 'Tarta de Queso al Horno',
     price: '6,00 €',
     desc: 'Receta casera elaborada a diario con queso fresco y crema. Centro suave y base crujiente de galleta.',
-    pairing: 'Café solo o cortado',
-    allergens: 'Contiene lácteos, huevo y gluten',
+    label1: 'Maridaje sugerido:',
+    val1: 'Café solo o copa de vino dulce',
+    label2: 'Alérgenos / Info:',
+    val2: 'Contiene lácteos, huevo y gluten',
     img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80'
   }
 };
 
-function initDishModal() {
+const EVENT_DATA = {
+  'cata-vinos': {
+    title: 'Noche de Vinos & Tablas Ibéricas',
+    price: '28 € / persona',
+    desc: 'Cata guiada por sumiller profesional con degustación de 4 vinos de autor y bodegas singulares, maridados con tablas de quesos artesanos curados y jamón de bellota 100% ibérico.',
+    label1: 'Horario & Incluye:',
+    val1: 'Jueves 20:30h • 4 copas + tablas',
+    label2: 'Condiciones:',
+    val2: 'Plazas limitadas (20 personas). Reserva previa.',
+    img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+  },
+  'acustico-terraza': {
+    title: 'Acústico en Directo & Noche de Cañas',
+    price: 'Entrada Libre',
+    desc: 'Sesión íntima de guitarra acústica y voz con versiones de pop-rock nacional en nuestra terraza iluminada y climatizada. Servicio ininterrumpido de raciones y cañas de grifo.',
+    label1: 'Horario & Espacio:',
+    val1: 'Viernes desde las 21:00h • Terraza Exterior',
+    label2: 'Acceso:',
+    val2: 'Sin coste de entrada. Consumición mínima.',
+    img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80'
+  },
+  'arroces-temporada': {
+    title: 'Arroces a la Leña & Plato de Temporada',
+    price: 'Según carta',
+    desc: 'Cada fin de semana nuestro chef cocina arroces melosos a fuego vivo y sugerencias fuera de carta elaboradas con el mejor producto fresco del día traído de lonja y huerta.',
+    label1: 'Disponibilidad:',
+    val1: 'Sábados y Domingos de 13:30h a 16:30h',
+    label2: 'Recomendación:',
+    val2: 'Se recomienda reservar mesa para comidas.',
+    img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'
+  },
+  'deporte-partidos': {
+    title: 'Tardes de Deporte & Tapeo de Barra',
+    price: 'Consumición habitual',
+    desc: 'Retransmisión en pantallas de alta definición en sala interior y barra con sonido ambiente para los partidos clave de Liga y Champions. Tapa caliente casera con cada consumición.',
+    label1: 'Horario:',
+    val1: 'Fines de semana y noches de Champions',
+    label2: 'Acceso:',
+    val2: 'Entrada libre y sin menú cerrado.',
+    img: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80'
+  }
+};
+
+/* --------------------------------------------------------------------------
+   6. MODAL UNIFICADO (PLATOS Y EVENTOS CON RESERVA RÁPIDA)
+   -------------------------------------------------------------------------- */
+function initDetailModal() {
   const modal = document.getElementById('dishModal');
   const backdrop = document.getElementById('modalBackdrop');
   const closeBtn = document.getElementById('btnModalClose');
   const orderBtn = document.getElementById('btnModalOrder');
+  const reserveBtn = document.getElementById('btnModalReserve');
 
   const modalTitle = document.getElementById('modalDishTitle');
   const modalPrice = document.getElementById('modalDishPrice');
   const modalDesc = document.getElementById('modalDishDesc');
   const modalPairing = document.getElementById('modalDishPairing');
   const modalAllergens = document.getElementById('modalDishAllergens');
+  const modalLabel1 = document.getElementById('modalLabel1');
+  const modalLabel2 = document.getElementById('modalLabel2');
   const modalImg = document.getElementById('modalDishImg');
 
   if (!modal) return;
 
-  function openDish(dishId) {
-    const data = DISH_DATA[dishId];
+  function openItem(data) {
     if (!data) return;
 
     if (modalTitle) modalTitle.textContent = data.title;
     if (modalPrice) modalPrice.textContent = data.price;
     if (modalDesc) modalDesc.textContent = data.desc;
-    if (modalPairing) modalPairing.textContent = data.pairing;
-    if (modalAllergens) modalAllergens.textContent = data.allergens;
+    if (modalPairing) modalPairing.textContent = data.val1 || data.pairing;
+    if (modalAllergens) modalAllergens.textContent = data.val2 || data.allergens;
+    if (modalLabel1) modalLabel1.textContent = data.label1 || 'Maridaje sugerido:';
+    if (modalLabel2) modalLabel2.textContent = data.label2 || 'Información:';
     if (modalImg) {
       modalImg.src = data.img;
       modalImg.alt = data.title;
@@ -267,16 +379,28 @@ function initDishModal() {
     }, 200);
   }
 
+  // Click en platos de la carta
   document.querySelectorAll('.dish-card').forEach(card => {
     card.addEventListener('click', () => {
       const dishId = card.dataset.dishId;
-      if (dishId) openDish(dishId);
+      if (dishId && DISH_DATA[dishId]) openItem(DISH_DATA[dishId]);
+    });
+  });
+
+  // Click en tarjetas de eventos
+  document.querySelectorAll('.event-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const eventId = card.dataset.eventId;
+      if (eventId && EVENT_DATA[eventId]) openItem(EVENT_DATA[eventId]);
     });
   });
 
   closeBtn?.addEventListener('click', closeModal);
   backdrop?.addEventListener('click', closeModal);
   orderBtn?.addEventListener('click', closeModal);
+  reserveBtn?.addEventListener('click', () => {
+    closeModal();
+  });
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {

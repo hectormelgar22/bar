@@ -89,7 +89,7 @@
       <!-- Menú Escritorio -->
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
         <a href="#carta" class="hover:text-brand-accentLight transition-colors">Carta</a>
-        <a href="#futbol" class="hover:text-brand-accentLight transition-colors">Fútbol en Directo</a>
+        <a href="#eventos" class="hover:text-brand-accentLight transition-colors">Eventos & Agenda</a>
         <a href="#espacio" class="hover:text-brand-accentLight transition-colors">El Bar y Terraza</a>
         <a href="#opiniones" class="hover:text-brand-accentLight transition-colors">Opiniones</a>
         <a href="#contacto" class="hover:text-brand-accentLight transition-colors">Contacto</a>
@@ -116,7 +116,7 @@
     <!-- Menú Móvil Desplegable -->
     <div class="md:hidden bg-brand-dark border-b border-white/10 px-6 space-y-3" id="mobileDrawer">
       <a href="#carta" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">La Carta</a>
-      <a href="#futbol" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Fútbol en Directo</a>
+      <a href="#eventos" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Eventos y Agenda</a>
       <a href="#espacio" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">El Bar y Terraza</a>
       <a href="#opiniones" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Opiniones</a>
       <a href="#contacto" class="mobile-nav-link block py-2 text-sm font-medium text-slate-200 hover:text-brand-accentLight border-b border-white/5">Ubicación y Horarios</a>
@@ -146,7 +146,7 @@
         </h1>
 
         <p class="text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed">
-          Abrimos por la mañana con los desayunos, seguimos al mediodía con las cañas de grifo y el picoteo, y por la noche ponemos los partidos de fútbol con la cocina abierta para cenar a gusto con amigos o en familia.
+          Abrimos por la mañana con los desayunos, seguimos al mediodía con las cañas de grifo y el picoteo, y por la tarde-noche ofrecemos eventos, música en directo y la mejor gastronomía para disfrutar con amigos o en familia.
         </p>
 
         <!-- Botones de Acción -->
@@ -170,8 +170,8 @@
             <span>Acondicionada para verano e invierno</span>
           </div>
           <div>
-            <strong class="font-serif text-2xl text-brand-accentLight block font-bold">Fútbol</strong>
-            <span>Todos los partidos en directo en sala</span>
+            <strong class="font-serif text-2xl text-brand-accentLight block font-bold">Eventos</strong>
+            <span>Música, catas y retransmisiones en vivo</span>
           </div>
         </div>
 
@@ -415,86 +415,228 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 5. FÚTBOL EN DIRECTO (SECCIÓN INFORMATIVA SIN BOTONES DE RESERVA) -->
+  <!-- 5. EVENTOS, MÚSICA & ESPECIALES (AGENDA VIVA DEL BAR) -->
   <!-- ========================================================================= -->
-  <section class="py-20 px-4 sm:px-6 bg-brand-dark border-t border-white/5" id="futbol">
-    <div class="max-w-6xl mx-auto space-y-10">
+  <section class="py-20 px-4 sm:px-6 bg-brand-dark border-t border-white/5 relative overflow-hidden" id="eventos">
+    <!-- Glow decorativo de fondo -->
+    <div class="absolute -top-32 right-1/4 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto space-y-12 relative z-10">
       
-      <!-- Encabezado Informativo -->
-      <div class="max-w-2xl space-y-3">
-        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">
-          Fútbol en el bar
-        </span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
-          Ven a ver el fútbol con nosotros
-        </h2>
-        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-          Ponemos todos los partidos de Liga, Champions League y Copa del Rey. Tenemos pantallas grandes repartidas por la sala y la barra para que se vea bien desde cualquier sitio, con el audio puesto en los partidos importantes.
-        </p>
+      <!-- Encabezado de Sección con Badge Animado -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-accent/30 text-xs font-semibold text-brand-accentLight">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
+            <span>Agenda & Novedades</span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Siempre hay un buen motivo para venir
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            Música acústica en la terraza, catas de vino guiadas, sugerencias fuera de carta de fin de semana y retransmisiones en directo. Un local vivo donde cada semana pasan cosas.
+          </p>
+        </div>
+
+        <!-- Selector de Filtros de Eventos -->
+        <div class="overflow-x-auto pb-1" id="eventTabsContainer">
+          <div class="inline-flex items-center gap-1 p-1 rounded-xl bg-brand-surface border border-white/10">
+            <button class="event-tab-btn active px-3.5 py-2 rounded-lg text-xs font-semibold transition-all" data-event-category="all">
+              Todos
+            </button>
+            <button class="event-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all" data-event-category="catas">
+              Catas & Vinos
+            </button>
+            <button class="event-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all" data-event-category="musica">
+              Música en Vivo
+            </button>
+            <button class="event-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all" data-event-category="cocina">
+              Especiales Cocina
+            </button>
+            <button class="event-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all" data-event-category="deportes">
+              Deporte en Directo
+            </button>
+          </div>
+        </div>
       </div>
 
-      <!-- Cómo funciona ver el partido en el bar -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Cuadrícula de Tarjetas de Eventos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="eventsContainer">
         
-        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-3">
-          <div class="w-8 h-8 rounded-lg bg-brand-dark flex items-center justify-center font-bold text-brand-accentLight text-sm border border-white/10">
-            01
-          </div>
-          <h3 class="font-serif text-lg font-bold text-white">Entrada libre y sin reserva</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Para ver el partido no hace falta reservar entrada ni menú cerrado. Llegas, buscas sitio en la barra o en las mesas de la sala y pides lo que te apetezca.
-          </p>
-        </div>
+        <!-- Tarjeta 1: Catas de Vino & Ibéricos -->
+        <article class="event-card group rounded-2xl bg-brand-surface border border-white/10 overflow-hidden flex flex-col justify-between cursor-pointer" data-event-category="catas" data-event-id="cata-vinos">
+          <div>
+            <div class="aspect-[16/11] overflow-hidden relative bg-black">
+              <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Cata de vinos y maridaje" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent opacity-80"></div>
+              
+              <!-- Badges de Fecha y Tipo -->
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-brand-darkest/90 backdrop-blur-md text-brand-accentLight text-[11px] font-bold px-2.5 py-1 rounded-md border border-brand-accent/30">
+                  Jueves • 20:30h
+                </span>
+              </div>
+              <div class="absolute bottom-3 left-3">
+                <span class="bg-brand-elevated/90 text-amber-200 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-amber-300/20">
+                  Cata & Maridaje
+                </span>
+              </div>
+            </div>
 
-        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-3">
-          <div class="w-8 h-8 rounded-lg bg-brand-dark flex items-center justify-center font-bold text-brand-accentLight text-sm border border-white/10">
-            02
+            <div class="p-5 space-y-2.5">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-brand-accentLight transition-colors">
+                Noche de Vinos & Tablas Ibéricas
+              </h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Selección de 4 copas de bodegas singulares guiada con sumiller, acompañadas de quesos curados y jamón de bellota.
+              </p>
+            </div>
           </div>
-          <h3 class="font-serif text-lg font-bold text-white">Cocina abierta durante el juego</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            La cocina no cierra mientras dura el partido. Puedes pedir raciones de torreznos, patatas bravas, hamburguesas o montados en cualquier momento.
-          </p>
-        </div>
 
-        <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-3">
-          <div class="w-8 h-8 rounded-lg bg-brand-dark flex items-center justify-center font-bold text-brand-accentLight text-sm border border-white/10">
-            03
+          <div class="p-5 pt-0 border-t border-white/5 mt-3">
+            <div class="flex items-center justify-between text-[11px] pt-3 text-brand-muted">
+              <span class="text-emerald-400 font-medium flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Plazas limitadas
+              </span>
+              <span class="text-brand-accent font-semibold group-hover:underline">Reservar sitio →</span>
+            </div>
           </div>
-          <h3 class="font-serif text-lg font-bold text-white">Terraza tranquila si no quieres fútbol</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Si vienes en familia o a charlar con amigos y prefieres no escuchar el partido, la terraza exterior y el cenador están separados y sin pantallas.
-          </p>
-        </div>
+        </article>
+
+        <!-- Tarjeta 2: Música Acústica en la Terraza -->
+        <article class="event-card group rounded-2xl bg-brand-surface border border-white/10 overflow-hidden flex flex-col justify-between cursor-pointer" data-event-category="musica" data-event-id="acustico-terraza">
+          <div>
+            <div class="aspect-[16/11] overflow-hidden relative bg-black">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Música acústica en directo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-brand-darkest/90 backdrop-blur-md text-brand-accentLight text-[11px] font-bold px-2.5 py-1 rounded-md border border-brand-accent/30">
+                  Viernes • 21:00h
+                </span>
+              </div>
+              <div class="absolute bottom-3 left-3">
+                <span class="bg-brand-elevated/90 text-sky-200 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-sky-300/20">
+                  Directo en Terraza
+                </span>
+              </div>
+            </div>
+
+            <div class="p-5 space-y-2.5">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-brand-accentLight transition-colors">
+                Acústico en Directo & Cañas
+              </h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Sesión íntima de guitarra y voz con versiones de pop-rock en nuestra terraza exterior climatizada e iluminada.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0 border-t border-white/5 mt-3">
+            <div class="flex items-center justify-between text-[11px] pt-3 text-brand-muted">
+              <span class="text-slate-300 font-medium">Entrada libre</span>
+              <span class="text-brand-accent font-semibold group-hover:underline">Ver detalles →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 3: Fuera de Carta de Fin de Semana -->
+        <article class="event-card group rounded-2xl bg-brand-surface border border-white/10 overflow-hidden flex flex-col justify-between cursor-pointer" data-event-category="cocina" data-event-id="arroces-temporada">
+          <div>
+            <div class="aspect-[16/11] overflow-hidden relative bg-black">
+              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Arroces a la leña y producto de mercado" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-brand-darkest/90 backdrop-blur-md text-brand-accentLight text-[11px] font-bold px-2.5 py-1 rounded-md border border-brand-accent/30">
+                  Sábado y Domingo
+                </span>
+              </div>
+              <div class="absolute bottom-3 left-3">
+                <span class="bg-brand-elevated/90 text-emerald-200 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-emerald-300/20">
+                  Sugerencia Chef
+                </span>
+              </div>
+            </div>
+
+            <div class="p-5 space-y-2.5">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-brand-accentLight transition-colors">
+                Arroces & Plato de Temporada
+              </h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Cada fin de semana preparamos un arroz meloso especial y platos de mercado fuera de carta según el mejor producto matinal.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0 border-t border-white/5 mt-3">
+            <div class="flex items-center justify-between text-[11px] pt-3 text-brand-muted">
+              <span class="text-slate-300 font-medium">Al mediodía</span>
+              <span class="text-brand-accent font-semibold group-hover:underline">Reservar mesa →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 4: Grandes Partidos & Deporte en Sala -->
+        <article class="event-card group rounded-2xl bg-brand-surface border border-white/10 overflow-hidden flex flex-col justify-between cursor-pointer" data-event-category="deportes" data-event-id="deporte-partidos">
+          <div>
+            <div class="aspect-[16/11] overflow-hidden relative bg-black">
+              <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80" alt="Retransmisiones deportivas y ambiente" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-brand-darkest/90 backdrop-blur-md text-brand-accentLight text-[11px] font-bold px-2.5 py-1 rounded-md border border-brand-accent/30">
+                  Fin de semana • 21:00h
+                </span>
+              </div>
+              <div class="absolute bottom-3 left-3">
+                <span class="bg-brand-elevated/90 text-rose-200 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-rose-300/20">
+                  En Directo
+                </span>
+              </div>
+            </div>
+
+            <div class="p-5 space-y-2.5">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-brand-accentLight transition-colors">
+                Tardes de Deporte & Tapeo
+              </h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Pantallas en sala y barra para seguir los partidos clave de Liga y Champions con cocina ininterrumpida y raciones calientes.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0 border-t border-white/5 mt-3">
+            <div class="flex items-center justify-between text-[11px] pt-3 text-brand-muted">
+              <span class="text-emerald-400 font-medium flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Sin reserva
+              </span>
+              <span class="text-brand-accent font-semibold group-hover:underline">Ver detalles →</span>
+            </div>
+          </div>
+        </article>
 
       </div>
 
-      <!-- Cartelera Informativa de la Semana -->
-      <div class="p-6 rounded-2xl bg-brand-darkest border border-white/10 space-y-4">
-        <h3 class="font-serif text-lg font-bold text-white">Próximas retransmisiones destacadas</h3>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-          <div class="p-4 rounded-lg bg-brand-surface border border-white/5 space-y-1.5">
-            <span class="text-emerald-400 font-semibold block">Domingo • 21:00h • LaLiga</span>
-            <strong class="text-white text-sm block">Real Madrid vs FC Barcelona</strong>
-            <span class="text-slate-400 block">Pantalla principal de sala y barra</span>
+      <!-- Banner de Celebraciones y Eventos Privados -->
+      <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-brand-surface via-brand-dark to-brand-surface border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="space-y-2 text-center md:text-left">
+          <div class="inline-block text-[11px] font-semibold text-brand-accent uppercase tracking-wider">
+            Celebraciones & Grupos
           </div>
-
-          <div class="p-4 rounded-lg bg-brand-surface border border-white/5 space-y-1.5">
-            <span class="text-slate-400 font-semibold block">Martes • 21:00h • Champions League</span>
-            <strong class="text-white text-sm block">Atlético de Madrid vs Inter de Milán</strong>
-            <span class="text-slate-400 block">Pantallas de sala</span>
-          </div>
-
-          <div class="p-4 rounded-lg bg-brand-surface border border-white/5 space-y-1.5">
-            <span class="text-slate-400 font-semibold block">Miércoles • 21:00h • Champions League</span>
-            <strong class="text-white text-sm block">Manchester City vs Bayern Múnich</strong>
-            <span class="text-slate-400 block">Pantallas de barra y comedor</span>
-          </div>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
+            ¿Organizas una cena de empresa, cumpleaños o reunión de amigos?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-xl">
+            Disponemos de menús cerrados para grupos con barra libre de cerveza y vino, y reserva de zona exclusiva en nuestro comedor o terraza.
+          </p>
         </div>
-
-        <p class="text-[11px] text-slate-400 pt-2">
-          * Si quieres ver algún otro partido de segunda división o competiciones internacionales que no esté en la lista, pídeselo al camarero al llegar.
-        </p>
+        <div class="flex-shrink-0">
+          <a href="#reservas" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-bold text-xs transition-all shadow-md hover:scale-105">
+            <span>Pedir información de grupos</span>
+            <span>→</span>
+          </a>
+        </div>
       </div>
 
     </div>
@@ -593,7 +735,7 @@
 
         <div class="p-6 rounded-xl bg-brand-surface border border-white/10 space-y-4">
           <p class="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
-            "Para ver el fútbol con los compañeros de trabajo es el mejor sitio de la zona. Se ve bien desde las mesas, la cerveza está bien tirada y los torreznos son de los buenos."
+            "Las noches de acústico en la terraza y las catas de los jueves son un planazo. El ambiente es fantástico, la cerveza está fresquísima y los torreznos son de los mejores de la ciudad."
           </p>
           <div class="pt-2 border-t border-white/5 text-xs">
             <strong class="text-white block font-medium">Javier Morales</strong>
@@ -631,7 +773,7 @@
               Reservar mesa para comer o cenar
             </h2>
             <p class="text-xs sm:text-sm text-slate-300">
-              Si quieres asegurar mesa para grupos o comidas familiares de fin de semana, déjanos tus datos y te guardamos el sitio.
+              Si quieres asegurar mesa para grupos, eventos o comidas familiares de fin de semana, déjanos tus datos y te guardamos el sitio.
             </p>
           </div>
 
@@ -754,11 +896,11 @@
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         <span class="font-serif font-bold text-white text-sm">La Maestranza Gastrobar</span>
-        <p class="text-[11px] text-slate-400 mt-0.5">Bar de tapas, raciones y cervecería de barrio.</p>
+        <p class="text-[11px] text-slate-400 mt-0.5">Bar de tapas, raciones, música y eventos.</p>
       </div>
       <div class="flex items-center gap-6 text-[11px] text-slate-400">
         <a href="#carta" class="hover:text-brand-accentLight transition-colors">Carta</a>
-        <a href="#futbol" class="hover:text-brand-accentLight transition-colors">Fútbol</a>
+        <a href="#eventos" class="hover:text-brand-accentLight transition-colors">Eventos</a>
         <a href="#reservas" class="hover:text-brand-accentLight transition-colors">Reservas</a>
         <a href="#contacto" class="hover:text-brand-accentLight transition-colors">Contacto</a>
       </div>
@@ -769,7 +911,7 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- 10. MODAL DEL PLATO (SENCILLO Y DIRECTO) -->
+  <!-- 10. MODAL DE DETALLE (PLATO O EVENTO) -->
   <!-- ========================================================================= -->
   <div class="modal-overlay hidden" id="dishModal" role="dialog" aria-modal="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
@@ -780,7 +922,7 @@
 
       <div class="space-y-4">
         <div class="aspect-video rounded-lg bg-black overflow-hidden relative">
-          <img src="" alt="Plato" class="w-full h-full object-cover" id="modalDishImg">
+          <img src="" alt="Detalle" class="w-full h-full object-cover" id="modalDishImg">
           <span class="absolute bottom-2.5 right-2.5 bg-brand-darkest/90 text-brand-accentLight font-bold px-3 py-1 rounded-md text-xs border border-brand-accent/20" id="modalDishPrice">
             -- €
           </span>
@@ -797,18 +939,21 @@
 
         <div class="p-3 rounded-lg bg-brand-dark border border-white/5 space-y-1.5 text-xs text-slate-300">
           <div class="flex justify-between">
-            <span class="text-brand-muted">Maridaje sugerido:</span>
-            <span id="modalDishPairing" class="text-white font-medium">Caña fría</span>
+            <span class="text-brand-muted" id="modalLabel1">Maridaje / Horario:</span>
+            <span id="modalDishPairing" class="text-white font-medium">--</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-brand-muted">Información:</span>
-            <span id="modalDishAllergens" class="text-slate-300">Consultar en barra</span>
+            <span class="text-brand-muted" id="modalLabel2">Detalles:</span>
+            <span id="modalDishAllergens" class="text-slate-300">--</span>
           </div>
         </div>
 
-        <div class="pt-1">
-          <button type="button" class="w-full py-2.5 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-bold text-xs transition-colors" id="btnModalOrder">
-            Cerrar ficha
+        <div class="pt-1 flex gap-2">
+          <a href="#reservas" class="flex-1 py-2.5 rounded-lg bg-brand-accent hover:bg-brand-accentLight text-brand-darkest font-bold text-xs transition-colors text-center" id="btnModalReserve">
+            Reservar mesa
+          </a>
+          <button type="button" class="px-4 py-2.5 rounded-lg bg-brand-dark border border-white/10 hover:bg-brand-elevated text-slate-300 font-semibold text-xs transition-colors" id="btnModalOrder">
+            Cerrar
           </button>
         </div>
       </div>
